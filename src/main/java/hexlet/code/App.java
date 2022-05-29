@@ -3,8 +3,14 @@
  */
 package hexlet.code;
 
+import hexlet.code.controllers.RootController;
 import io.javalin.Javalin;
 import io.javalin.core.JavalinConfig;
+import io.javalin.plugin.rendering.template.JavalinThymeleaf;
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 //import io.javalin.plugin.rendering.template.JavalinThymeleaf;
 
 public class App {
@@ -17,8 +23,18 @@ public class App {
         app.start(getPort());
     }
 
+    private static boolean isProduction() {
+        return true;
+    }
+
     public static Javalin getApp() {
-        Javalin app = Javalin.create(JavalinConfig::enableDevLogging);
+        Javalin app = Javalin.create(config -> {
+            if (!isProduction()) {
+                config.enableDevLogging();
+            }
+            config.enableWebjars();
+            JavalinThymeleaf.configure(getTemplateEngine());
+        });
         addRoutes(app);
         return app;
     }
@@ -31,7 +47,7 @@ public class App {
     private static void addRoutes(Javalin app) {
         // Для GET-запроса на маршрут / будет выполняться
         // обработчик welcome в контроллере RootController
-        app.get("/", ctx -> ctx.result(new App().getGreeting()));
+        app.get("/", RootController.welcome);
 
         // При помощи методов routes() и path() маршруты можно группировать
 
@@ -49,6 +65,20 @@ public class App {
 //            });
 //        });
         // END
+    }
+
+    private static TemplateEngine getTemplateEngine() {
+        TemplateEngine templateEngine = new TemplateEngine();
+
+        templateEngine.addDialect(new LayoutDialect());
+        templateEngine.addDialect(new Java8TimeDialect());
+
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("/templates/");
+
+        templateEngine.addTemplateResolver(templateResolver);
+
+        return templateEngine;
     }
 
 }

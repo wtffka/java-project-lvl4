@@ -77,5 +77,10 @@ task generateMigrations(type: JavaExec) {
     mainClass = 'hexlet.code.MigrationGenerator'
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+
 task stage(dependsOn: ['clean', 'installDist'])
 installDist.mustRunAfter clean
