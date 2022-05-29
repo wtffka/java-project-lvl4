@@ -5,10 +5,10 @@ package hexlet.code;
 
 import io.javalin.Javalin;
 import io.javalin.core.JavalinConfig;
-import io.javalin.plugin.rendering.template.JavalinThymeleaf;
+//import io.javalin.plugin.rendering.template.JavalinThymeleaf;
 
 public class App {
-    public String getGreeting() {
+    final String getGreeting() {
         return "Hello World!";
     }
 
@@ -25,7 +25,7 @@ public class App {
 
     private static int getPort() {
         String port = System.getenv().getOrDefault("PORT", "5000");
-        return Integer.valueOf(port);
+        return Integer.parseInt(port);
     }
 
     private static void addRoutes(Javalin app) {
