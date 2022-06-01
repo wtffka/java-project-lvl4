@@ -75,8 +75,6 @@ public class UrlController {
     };
 
     public static Handler showUrl = ctx -> {
-        System.out.println(ctx.fullUrl());
-        System.out.println(ctx.url());
         int id = ctx.pathParamAsClass("id", Integer.class).getOrDefault(null);
 
         Url url = new QUrl()
