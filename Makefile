@@ -1,2 +1,2 @@
 start:
-	APP_ENV=NOTNULL ./gradlew run
+	APP_ENV=development ./gradlew run
