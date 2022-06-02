@@ -9,7 +9,7 @@
         <tr>
             <th class="col-1">ID</th>
             <th class="col-3">Website address</th>
-            <th>Last check date</th>
+            <th>Date of last check</th>
             <th class="col-2">Response code</th>
         </tr>
         </thead>
@@ -19,24 +19,25 @@
             <td>
                 <a th:href="@{/urls/{id}(id=*{getId()})}" th:text="${#strings.abbreviate(url.getName(), 30)}"></a>
             </td>
-            <td th:text="${#temporals.format(url.getCreatedAt(), 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(url.getLastCheckDate(), 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="*{getLastCheckStatus}"></td>
         </tr>
         </tbody>
     </table>
 
-<!--    <nav aria-label="Page navigation" th:if="${#lists.size(page)}">-->
-<!--        <ul class="pagination justify-content-center mt-5">-->
-<!--            <li th:class="'page-item' + ${currentPage <= 1 ? ' disabled' : ''}">-->
-<!--                <a class="page-link" th:href="@{/articles(page=${currentPage - 1})}">Previous</a>-->
-<!--            </li>-->
-<!--            <li th:each="page : ${pages}" th:class="'page-item' + ${currentPage == page ? ' active' : ''}">-->
-<!--                <a class="page-link" th:href="@{/articles(page=${page})}" th:text="${page}"></a>-->
-<!--            </li>-->
-<!--            <li th:class="'page-item' + ${currentPage >= #lists.size(pages) ? ' disabled' : ''}">-->
-<!--                <a class="page-link" th:href="@{/articles(page=${currentPage + 1})}">Next</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </nav>-->
+    <nav aria-label="Page navigation" th:if="${#lists.size(pages)}">
+        <ul class="pagination justify-content-center mt-5">
+            <li th:class="'page-item' + ${currentPage <= 1 ? ' disabled' : ''}">
+                <a class="page-link" th:href="@{/urls(page=${currentPage - 1})}">Previous</a>
+            </li>
+            <li th:each="page : ${pages}" th:class="'page-item' + ${currentPage == page ? ' active' : ''}">
+                <a class="page-link" th:href="@{/urls(page=${page})}" th:text="${page}"></a>
+            </li>
+            <li th:class="'page-item' + ${currentPage >= #lists.size(pages) ? ' disabled' : ''}">
+                <a class="page-link" th:href="@{/urls(page=${currentPage + 1})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </section>
 
 </html>

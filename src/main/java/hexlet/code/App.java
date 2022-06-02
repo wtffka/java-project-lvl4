@@ -50,16 +50,10 @@ public final class App {
             path("urls", () -> {
                 get(UrlController.listUrls);
                 post(UrlController.createUrl);
-                get("{id}", UrlController.showUrl);
-
-//                get("{id}", UrlController.showUrls);
-////                post(ArticleController.createArticle);
-////                get("/{id}/edit", ArticleController.editArticle);
-////                post("/{id}/edit", ArticleController.updateArticle);
-////                get("{id}/delete", ArticleController.deleteArticle);
-////                post("{id}/delete", ArticleController.destroyArticle);
-//            });
-//        });
+                path("{id}", () -> {
+                    get(UrlController.showUrl);
+                    post("checks", UrlController.checkUrl);
+                });
             });
         });
     }

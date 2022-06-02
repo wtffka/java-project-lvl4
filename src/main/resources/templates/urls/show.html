@@ -12,34 +12,34 @@
                 <td th:text="*{getId}"></td>
             </tr>
             <tr>
-                <td>Имя</td>
+                <td>Name</td>
                 <td th:text="*{getName}"></td>
             </tr>
             <tr>
-                <td>Дата создания</td>
+                <td>Date of creation</td>
                 <td th:text="${#temporals.format(url.getCreatedAt(), 'dd/MM/yyyy HH:mm')}"></td>
             </tr>
             </tbody>
         </table>
-        <h2 class="mt-5">Проверки</h2>
+        <h2 class="mt-5">Checks</h2>
         <form method="post" th:action="@{/urls/{id}/checks(id=*{getId()})}">
-            <button type="submit" class="btn btn-primary">Запустить проверку</button>
+            <button type="submit" class="btn btn-primary">Run a check</button>
         </form>
         <table class="table table-bordered table-hover mt-3">
             <thead>
             <tr>
                 <th class="col-1">ID</th>
-                <th class="col-1">Код ответа</th>
+                <th class="col-1">Response code</th>
                 <th>Title</th>
                 <th>h1</th>
-                <th>description</th>
-                <th>Дата проверки</th>
+                <th>Description</th>
+                <th>Date of last check</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="urlCheck : ${urlChecks}" th:object="${urlCheck}">
                 <td th:text="*{getId()}"></td>
-                <td th:text="*{getStatusCode()}"></td>
+                <td th:text="*{getResponseCode()}"></td>
                 <td th:text="${#strings.abbreviate(urlCheck.getTitle(), 20)}"></td>
                 <td th:text="${#strings.abbreviate(urlCheck.getH1(), 20)}"></td>
                 <td th:text="${#strings.abbreviate(urlCheck.getDescription(), 50)}"></td>

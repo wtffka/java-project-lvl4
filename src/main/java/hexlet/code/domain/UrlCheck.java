@@ -19,7 +19,7 @@ public final class UrlCheck extends Model {
 
     private int responseCode;
     private String title;
-    private String header;
+    private String h1;
 
     @Lob
     private String description;
@@ -30,10 +30,10 @@ public final class UrlCheck extends Model {
     @WhenCreated
     private Instant createdAt;
 
-    public UrlCheck(int responseCode, String title, String header, String description, Url url) {
+    public UrlCheck(int responseCode, String title, String h1, String description, Url url) {
         this.responseCode = responseCode;
         this.title = title;
-        this.header = header;
+        this.h1 = h1;
         this.description = description;
         this.url = url;
     }
@@ -50,8 +50,8 @@ public final class UrlCheck extends Model {
         return title;
     }
 
-    public String getHeader() {
-        return header;
+    public String getH1() {
+        return h1;
     }
 
     public String getDescription() {
