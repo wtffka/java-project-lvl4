@@ -16,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.shouldHaveThrown;
 
 class AppTest {
 
@@ -125,7 +124,7 @@ class AppTest {
 
     @Test
     void testCreateExistingUrl() {
-        HttpResponse <String> responsePost = Unirest
+        HttpResponse<String> responsePost = Unirest
                 .post(host + URLSENDPOINT)
                 .field("url", url.getName())
                 .asString();
