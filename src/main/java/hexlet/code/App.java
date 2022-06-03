@@ -25,8 +25,12 @@ public final class App {
         app.start(getPort());
     }
 
+    private static String getMode() {
+        return System.getenv().getOrDefault("APP_ENV", "production");
+    }
+
     private static boolean isProduction() {
-        return true;
+        return getMode().equals("production");
     }
 
     public static Javalin getApp() {
