@@ -32,6 +32,7 @@ class AppTest {
     private static String host;
     private static Transaction transaction;
     private static Url url;
+    private static Url incorrectUrl;
     private static MockWebServer mockWebServer;
     private static final int SUCCESS = 200;
     private static final int UNPROCESSABLENTITY = 422;
@@ -57,6 +58,9 @@ class AppTest {
         host = "http://localhost:" + app.port();
         url = new Url("https://ru.hexlet.io");
         url.save();
+
+        incorrectUrl = new Url("https://localhost:5000");
+        incorrectUrl.save();
 
         mockWebServer = new MockWebServer();
 
@@ -155,7 +159,6 @@ class AppTest {
         assertThat(queryUrl).isNull();
     }
 
-
     @Test
     void testIncorrectId() {
         HttpResponse<String> response = Unirest
@@ -185,6 +188,19 @@ class AppTest {
         assertThat(body).contains(mockDescription);
         assertThat(body).contains(mockH1);
         assertThat(body).contains(mockTitle);
+    }
+
+    @Test
+    void incorrectCheck() {
+        HttpResponse<String> responsePost = Unirest
+                .post(host + URLSENDPOINT + "/" + incorrectUrl.getId() + CHECKSENDPOINT)
+                .asString();
+
+        HttpResponse<String> responseGet = Unirest
+                .get(host + URLSENDPOINT + "/" + incorrectUrl.getId())
+                .asString();
+
+        assertThat(responseGet.getBody()).contains("Страница недоступна или не существует");
     }
 
 }
