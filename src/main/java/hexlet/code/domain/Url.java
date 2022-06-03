@@ -23,7 +23,7 @@ public final class Url extends Model {
     private Instant createdAt;
 
     @OneToMany
-    private List<UrlCheck> urlChecks;
+    List<UrlCheck> urlChecks;
 
     public Url(String name) {
         this.name = name;
