@@ -3,3 +3,7 @@ ebean:
     platform: h2
     ddlMode: dropCreate
     dbName: test
+    postgres:
+      username: usmstabuvazzcx
+      password: 460bdca0cb1b6c5806be5989f0b9a08afb01e06d0f5c4d6e44f5d82d9453c7fa
+      url: postgres://usmstabuvazzcx:460bdca0cb1b6c5806be5989f0b9a08afb01e06d0f5c4d6e44f5d82d9453c7fa@ec2-34-246-227-219.eu-west-1.compute.amazonaws.com:5432/d7nho02pne0gh0
