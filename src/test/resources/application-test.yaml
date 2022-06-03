@@ -3,7 +3,3 @@ ebean:
     platform: h2
     ddlMode: dropCreate
     dbName: test
-    postgres:
-      username: ${JDBC_DATABASE_USERNAME}
-      password: ${JDBC_DATABASE_PASSWORD}
-      url: ${JDBC_DATABASE_URL}

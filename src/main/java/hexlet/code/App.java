@@ -16,17 +16,13 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 
 public final class App {
 
-    String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
         Javalin app = getApp();
         app.start(getPort());
     }
 
     private static String getMode() {
-        return System.getenv().getOrDefault("APP_ENV", "production");
+        return System.getenv().getOrDefault("APP_ENV", "development");
     }
 
     private static boolean isProduction() {
