@@ -50,7 +50,7 @@ public final class Url extends Model {
 
     public Integer getLastCheckStatus() {
         if (!urlChecks.isEmpty()) {
-            return urlChecks.get(urlChecks.size() - 1).getResponseCode();
+            return urlChecks.get(urlChecks.size() - 1).getStatusCode();
         }
         return null;
     }

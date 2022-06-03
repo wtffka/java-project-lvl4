@@ -17,7 +17,7 @@ public final class UrlCheck extends Model {
     @Id
     private long id;
 
-    private int responseCode;
+    private int statusCode;
     private String title;
     private String h1;
 
@@ -30,8 +30,8 @@ public final class UrlCheck extends Model {
     @WhenCreated
     private Instant createdAt;
 
-    public UrlCheck(int responseCode, String title, String h1, String description, Url url) {
-        this.responseCode = responseCode;
+    public UrlCheck(int statusCode, String title, String h1, String description, Url url) {
+        this.statusCode = statusCode;
         this.title = title;
         this.h1 = h1;
         this.description = description;
@@ -42,8 +42,8 @@ public final class UrlCheck extends Model {
         return id;
     }
 
-    public int getResponseCode() {
-        return responseCode;
+    public int getStatusCode() {
+        return statusCode;
     }
 
     public String getTitle() {
