@@ -59,7 +59,7 @@ public class UrlController {
             urlObject = new URL(urlToString);
         } catch (MalformedURLException mue) {
             ctx.status(422);
-            ctx.sessionAttribute("flash", "Incorrect URL");
+            ctx.sessionAttribute("flash", "Некорректный URL");
             ctx.sessionAttribute("flash-type", "danger");
             ctx.render("index.html");
             return;
@@ -71,7 +71,7 @@ public class UrlController {
 
         if (duplicateUrl != null) {
             ctx.status(422);
-            ctx.sessionAttribute("flash", "The page already exists");
+            ctx.sessionAttribute("flash", "Страница уже была добавлена");
             ctx.sessionAttribute("flash-type", "danger");
             ctx.render("index.html");
             return;
@@ -85,7 +85,7 @@ public class UrlController {
         Url url = new Url(urlToSave);
         url.save();
 
-        ctx.sessionAttribute("flash", "The page added successfully");
+        ctx.sessionAttribute("flash", "Страница успешно добавлена");
         ctx.sessionAttribute("flash-type", "success");
         ctx.redirect("/urls");
     };
@@ -146,10 +146,10 @@ public class UrlController {
             UrlCheck check = new UrlCheck(responseCode, title, h1, description, url);
             check.save();
 
-            ctx.sessionAttribute("flash", "The page checked successfully");
+            ctx.sessionAttribute("flash", "Страница успешно проверена");
             ctx.sessionAttribute("flash-type", "success");
         } catch (UnirestException ue) {
-            ctx.sessionAttribute("flash", "The page is unavailable or doesn't exist");
+            ctx.sessionAttribute("flash", "Страница недоступна или не существует");
             ctx.sessionAttribute("flash-type", "danger");
         }
 

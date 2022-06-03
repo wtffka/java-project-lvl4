@@ -112,7 +112,7 @@ class AppTest {
                 .asString();
 
         assertThat(response.getStatus()).isEqualTo(SUCCESS);
-        assertThat(response.getBody()).contains("The page added successfully");
+        assertThat(response.getBody()).contains("Страница успешно добавлена");
 
         Url queryUrl = new QUrl()
                 .name.equalTo(urlName)
@@ -130,7 +130,7 @@ class AppTest {
                 .asString();
 
         assertThat(responsePost.getStatus()).isEqualTo(UNPROCESSABLENTITY);
-        assertThat(responsePost.getBody()).contains("The page already exists");
+        assertThat(responsePost.getBody()).contains("Страница уже была добавлена");
     }
 
     @Test
@@ -142,7 +142,7 @@ class AppTest {
                 .asString();
 
         assertThat(responsePost.getStatus()).isEqualTo(UNPROCESSABLENTITY);
-        assertThat(responsePost.getBody()).contains("Incorrect URL");
+        assertThat(responsePost.getBody()).contains("Некорректный URL");
 
         Url queryUrl = new QUrl()
                 .name.equalTo(incorrectUrl)
