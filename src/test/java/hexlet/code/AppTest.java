@@ -64,7 +64,7 @@ class AppTest {
 
         mockWebServer = new MockWebServer();
 
-        String expected = Files.readString(Paths.get("src", "test", "resources", "expected", "mock"));
+        String expected = Files.readString(Paths.get("src", "test", "resources", "fixtures", "index.html"));
 
         mockWebServer.enqueue(new MockResponse().setBody(expected));
 
